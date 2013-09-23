@@ -149,12 +149,12 @@
 
       function init() {
 
-        if(!window.webkitStorageInfo) return;
+        if(!navigator.webkitPersistentStorage) return;
 
-        window.webkitStorageInfo.requestQuota(window.PERSISTENT, 20*1024*1024, function(grantedBytes) {
+        navigator.webkitPersistentStorage.requestQuota(20*1024*1024, function(grantedBytes) {
           console.log("I was granted "+grantedBytes+" bytes.");
 
-          window.webkitRequestFileSystem(window.PERSISTENT, grantedBytes, onInitFs, errorHandler);
+          window.RequestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler);
         }, errorHandler);
 
         function onInitFs(fs) {
